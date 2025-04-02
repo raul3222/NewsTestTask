@@ -30,8 +30,8 @@ class CategoriesVC: BaseVC {
     private func bindViewModel() {
         viewModel.categories.bind { [weak self] categories in
             guard let self = self,
-                  let _ = categories else { return }
-            tableView.reloadData()
+                  let categories = categories else { return }
+            categories.isEmpty ? self.showEmptyLabel() : self.tableView.reloadData()
         }
     }
 }

@@ -20,6 +20,16 @@ class BaseVC: UIViewController {
         return tableView
     }()
     
+    lazy var emptyLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.text = "Здесь пока ничего нет..."
+        label.textAlignment = .center
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackGradient()
@@ -43,6 +53,14 @@ class BaseVC: UIViewController {
             make.leading.trailing.equalToSuperview().inset(24)
             make.top.equalTo(view.safeAreaLayoutGuide).offset(24)
             make.bottom.equalToSuperview()
+        }
+    }
+    
+    func showEmptyLabel() {
+        view.addSubview(emptyLabel)
+        emptyLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.centerY.equalToSuperview()
         }
     }
 }

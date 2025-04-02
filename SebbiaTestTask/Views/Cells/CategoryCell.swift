@@ -23,6 +23,13 @@ class CategoryCell: UITableViewCell {
         return label
     }()
     
+    let chevronImg: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(systemName: "chevron.right")
+        img.tintColor = .black
+        return img
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
@@ -39,6 +46,7 @@ class CategoryCell: UITableViewCell {
         
         contentView.addSubview(container)
         container.addSubview(titleLabel)
+        container.addSubview(chevronImg)
         
         container.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
@@ -48,6 +56,11 @@ class CategoryCell: UITableViewCell {
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(16)
             make.top.bottom.equalToSuperview().inset(12)
+        }
+        
+        chevronImg.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(16)
+            make.centerY.equalToSuperview()
         }
     }
 }

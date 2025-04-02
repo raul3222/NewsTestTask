@@ -38,8 +38,8 @@ class NewsScreen: BaseVC {
     private func bindViewModel() {
         viewModel.news.bind { [weak self] news in
             guard let self = self,
-                  let _ = news else { return }
-            self.tableView.reloadData()
+                  let news = news else { return }
+            news.isEmpty ? self.showEmptyLabel() : self.tableView.reloadData()
         }
     }
 }
